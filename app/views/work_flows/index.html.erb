@@ -1,0 +1,29 @@
+<h3 align="center">Lista de Procesos de Trabajo</h3>
+
+<table class='table' >
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Area de Trabajo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @work_flows.each do |work_flow| %>
+  <tr>
+    <td><%= work_flow.id %></td>
+    <td><%= work_flow.name %></td>
+    <td><%= work_flow.description %></td>
+    <td><%= work_flow.work_area_id %></td>
+    <td><%= link_to 'Ver', work_area_work_flow_path(@work_area,work_flow.id ), :class => "btn" %></td>
+    <td><%= link_to 'Editar', edit_work_area_work_flow_path(@work_area,work_flow), :class => "btn" %></td>
+    <td><%= link_to 'Eliminar', work_flow, confirm: 'Esta seguro?', method: :delete , :class => "btn" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo Proceso de Trabajo', new_work_flow_path, :class => "btn" %>

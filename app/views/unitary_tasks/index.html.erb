@@ -1,0 +1,27 @@
+<h3 align="center">Listando las Tareas Unitarias</h3>
+
+<table class='table table' >
+  <tr>
+    <th>ID</th>
+    <th>Descripción</th>
+    <th>Actividad</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @unitary_tasks.each do |unitary_task| %>
+  <tr>
+    <td><%= unitary_task.id %></td>
+    <td><%= unitary_task.description %></td>
+    <td><%= unitary_task.activity_id %></td>
+    <td><%= link_to 'Ver', activity_unitary_task_path(@activity, unitary_task.id) %></td>
+    <td><%= link_to 'Editar', edit_activity_unitary_task_path(@activity, unitary_task) %></td>
+    <td><%= link_to 'Eliminar', activity_unitary_task_path(@activity, unitary_task.id), confirm: 'Esta seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Tarea Unitaria', new_activity_unitary_task_path %>

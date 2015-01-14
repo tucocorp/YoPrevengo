@@ -1,0 +1,51 @@
+<%= form_tag  :action =>'guardar_actualizar_procedimiento' do %>
+  <center>
+    <p>
+      <b>Tarea Unitaria: </b><%= @unitary_task.description %>
+    </p>
+  </center>
+  </br></br> 
+  <%= hidden_field_tag "tarea_id", @unitary_task.id %>
+  <%= hidden_field_tag "risk_matrix_id", @risk_matrix.id %>
+
+
+<table border="1" class="table-condensed">
+  <tr>
+    <th>Peligro</th>
+    <th>Riesgo</th>
+    <th>Causa Básica</th>
+    <th>Tiempo de Seguimiento</th>
+    <th>Cantidad de Controles</th>   
+    <th>Responsable</th>
+    <th>Control a Aplicar</th>
+  </tr>
+  
+  <tr>
+    <td rowspan=2><%= @risk.danger.description %></br></td>
+    <td rowspan=2><%= @risk.description%></br></td>
+    <% @procedimiento.each do |procedimiento|%>
+      <% if @i == 0 %>
+        <td><%= @risk_matrix.personal_cause %></td>
+        <% @i += 1 %>
+      <% else%>
+        <td><%= @risk_matrix.work_cause%></td>
+      <% end%>
+      <%= hidden_field_tag "procedimiento_ids[]", procedimiento.id %>
+      <td align="center"><%= text_field_tag "monitoring_time[]", procedimiento.monitoring_time, :style => "width:60px" %></td>
+      <td align="center"><%= number_field_tag "control_amount[]", procedimiento.control_amount, :style => "width:50px"  %></td>
+      <td><%= text_field_tag "control_responsable[]", procedimiento.control_responsable %></td>
+      <td><%= text_field_tag "control_measure[]", procedimiento.control_measure%></td>
+  </tr>
+  <tr>
+    <%end%>
+  </tr>
+</table> 
+
+</br></br> 
+
+<center>
+  <div class="actions">
+    <%= submit_tag "Actualizar", :class => "btn btn-warning" %>
+  
+
+<% end %>

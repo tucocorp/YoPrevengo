@@ -1,0 +1,23 @@
+<h1>Listing criteria_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @criteria_types.each do |criteria_type| %>
+  <tr>
+    <td><%= criteria_type.name %></td>
+    <td><%= link_to 'Show', criteria_type %></td>
+    <td><%= link_to 'Edit', edit_criteria_type_path(criteria_type) %></td>
+    <td><%= link_to 'Destroy', criteria_type, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Criteria type', new_criteria_type_path %>

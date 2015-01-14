@@ -1,0 +1,2 @@
+module RisksDamagesHelper
+end

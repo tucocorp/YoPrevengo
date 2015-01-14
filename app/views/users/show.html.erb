@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well span3" id="divtabla3">
+  
+  <p>
+    <b><h4 align="center">Datos del Usuario</h4></b>
+  </p>
+
+  <p>
+    <b>RUT:</b>
+    <%= @user.run %>
+  </p>
+
+  <p>
+    <b>Nombre de usuario:</b>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <b>Apellido paterno:</b>
+    <%= @user.lastname %>
+  </p>
+
+  <p>
+    <b>Apellido materno:</b>
+    <%= @user.surname %>
+  </p>
+
+  <p>
+    <b>Telefono:</b>
+    <%= @user.phono %>
+  </p>
+
+  <p>
+    <b>E-mail:</b>
+    <%= @user.email %>
+  </p>
+
+  </br>
+
+  <%= link_to ' Actualizar', edit_user_path(@user), :class => "active icon-refresh btn btn-warning" %> |
+  <%= link_to ' Atrás', users_path, :class => "icon-arrow-left btn" %>
+
+</div>

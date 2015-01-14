@@ -1,0 +1,23 @@
+<h3 align="center">Lista de Daños</h3>
+<center>
+  <%= link_to ' Agregar daño', new_damage_path, :class => "active icon-pencil btn btn-success" %>
+</center>
+</br></br>
+
+
+<div class="well span8" id="divtabla11">
+  <table class='table table-condensed' >
+    <tr>
+      <th colspan="2">Descripción</th>
+    </tr>
+
+    <% @damages.each do |damage| %>
+      <tr>
+        <td width="900"><%= link_to damage.description, damage %></td>
+        <td width="100"><%= link_to ' Eliminar', damage, confirm: "¿Estas seguro que desea eliminar el daño: #{damage.description}", method: :delete, :class => "active icon-trash btn btn-mini btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+

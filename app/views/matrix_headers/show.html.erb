@@ -1,0 +1,208 @@
+<center>
+    <p>
+        <h3>Matriz de Riesgos</h3>
+    </p>
+    <p>
+        <b>Compañia: </b><%= @company.name%>
+    </p>
+     <p>
+        <b>Tarea Unitaria: </b><%= @unitary_task.description %>
+     </p>
+</center>
+
+
+ <center>
+    <button type="button" class="icon-flag btn btn-info" data-toggle="collapse" data-target="#demo">
+        Ver Riesgos Evaluados
+    </button>
+</center>
+<br/>
+
+<div id="demo" class="collapse ">
+    <center>
+        <div class="well span5" id="divtabla10">
+            <% @cont=1%>
+            <% if @evaluado.count != 0 %>
+                <table class="table">
+                    <tr>
+                        <td><b>N°</b></td>
+                        <td><b>Riesgo<b></td>
+                    </tr>
+                    <% @evaluado.each do |e|%>
+                        <tr>
+                            <td><%=@cont %></td>
+                            <!--<td><%=e.risk_id%></td>--> 
+                            <td align="center"><%= e.risk.description%></td>
+                            <% @cont=@cont+1   %>
+                        </tr>   
+                    <%end%>
+                </table>
+            <%end%>
+        </div>
+    </center>
+</div>
+
+<center>
+    <div class="well span5" id="divtabla10">
+        
+        <% @con=1%>
+        <% if @noevaluado.count != 0 %>
+            <table class="table">
+                <tr><b>Riesgos No Evaluados</b></tr>
+                <tr>
+                    <td width="25"><b>N°</b></td>
+                    <td><b>Riesgo<b></td>
+                </tr>                
+                <% @noevaluado.each do |e|%>
+                    <tr>
+                        <td><%=@con %></td>
+                        <!--<td><%=e.risk_id%></td>--> 
+                        <td align="center"><%= e.risk.description%></td>
+                    </tr>
+                    <% @con+=1   %>   
+                <%end%>
+            </table>
+        <%end%>
+    
+        <%= link_to 'Asignar Riesgo', asignar_path(@header), :class => "active btn btn-primary" %>
+
+        <% if @noevaluado.count != 0 %>
+            <%= link_to 'Incorporar a la Matriz',generar_matriz_path(@header), :class => "active btn btn-success" %></br></br> 
+        <%end%>
+
+    </div>
+</center>
+
+<center>
+    <table border="1" class="table-condensed">
+            <tr>
+                <td><b>Compañía</b></td>
+                <td colspan="8"><%= @company.name%></td>
+            </tr>
+            <tr>
+                <td><b>Área</b></td>
+                <td colspan="2"><%= @activity.work_flow.work_area.name %></td>
+                <td colspan="2"><b>Proceso</b></td>
+                <td colspan="4"><%= @activity.work_flow.name%></td>
+            </tr>
+            
+            <tr>
+                
+                <td><b>Actividad</b></td>
+                <td colspan="2"><%= @activity.description%></td>
+                <td colspan="2"><b>Tarea Unitaria</b></td>
+                <td colspan="4"><%= @unitary_task.description %></td>
+            </tr>
+            <tr>
+                <th rowspan="2">Peligro</th>
+                <th rowspan="2">Riesgo</th>
+                <th colspan="2">Causa Básica</th>
+                <th rowspan="2">Probabilidad</th>
+                <th rowspan="2">Consecuencia</th>   
+                <th rowspan="2">Magnitud</th>
+                <th rowspan="2">Calificación</th>
+                <th rowspan="2">Procedimiento</th>
+            </tr>
+            <tr>
+                <th>Factor Personal</th>
+                <th>Factor Trabajo</th>  
+            </tr>
+
+
+        <% @risk_matrix.each do |rm|%>
+        <tr>
+            <td><%= rm.risk.danger.description %></td>
+            <td><%= rm.risk.description%></td>
+            <td><%= rm.personal_cause %></td>
+            <td><%= rm.work_cause %></td>
+            <td align="center"><%= rm.probability %></td>
+            <% if rm.consequence == @consecuencia.last.value %>
+                <td align="center" bgcolor="#FF0000"><%= rm.consequence%></td> 
+             <%else%>      
+                <td align="center"><%= rm.consequence%></td> 
+             <%end%>
+            
+            <td align="center"><%= rm.magnitude%></td>
+            <% if @r.count == 3 %>
+                <% if rm.consequence == @consecuencia.last.value %>
+                   <td bgcolor="#FF0000" align="center">Intolerable</td>
+                   <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                    <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                    <%else%>
+                    <td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                    <%end%>
+                <% else %>
+                    <% if rm.rating == "Intolerable"%>
+                        <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                        <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                        <%else%>
+                            <td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                        <%end%>
+                    <% elsif rm.rating == "Tolerable"%>
+                         <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                         <td></td>
+                    <% elsif rm.rating == "Moderado"%>
+                        <td bgcolor="#E8F809" align="center">Moderado</td>
+                        <td></td>
+                    <% end%> 
+                <% end %>   
+            <% elsif @r.count == 5 %>
+                <% if rm.consequence == @consecuencia.last.value %>
+                    <td bgcolor="#FF0000" align="center">Intolerable</td>
+                    <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                    <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                    <%else%>
+                        <td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                    <%end%>
+                <% else %>                           
+                    <% if rm.rating == "Intolerable"%>
+                        <td bgcolor="#FF0000" align="center">Intolerable</td>
+                        <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                            <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                        <%else%>
+                            <td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                        <%end%>
+                    <% elsif rm.rating == "Tolerable"%>
+                         <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                         <td></td>
+                    <% elsif rm.rating == "Moderado"%>
+                        <td bgcolor="#E8F809" align="center">Moderado</td>
+                        <td></td>
+                    <% end%> 
+                <%end%>
+            <% elsif @r.count == 7 %>
+                <% if rm.consequence == @consecuencia.last.value %>
+                    <td bgcolor="#FF0000" align="center">Intolerable</td>
+                    <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                    <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                    <%else%>
+                        <td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                    <%end%>
+                <% else %> 
+                    <% if rm.rating == "Intolerable"%>
+                        <td bgcolor="#FF0000" align="center">Intolerable</td>
+                        <% if PreventiveProcedure.where(:risk_matrix_id => rm.id).count == 0 %>
+                            <td><%= link_to 'Generar Procedimiento', generar_procedimiento_path(rm.id), :class => "btn btn-mini btn-warning"%></td>
+                        <%else%>
+                            td><%= link_to 'Ver Procedimiento', ver_procedimiento_path(rm.id), :class => "btn btn-mini btn-success"%></td>
+                        <%end%>
+                    <% elsif rm.rating == "Tolerable"%>
+                        <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                        <td></td>
+                    <% elsif rm.rating == "Moderado"%>
+                        <td bgcolor="#E8F809" align="center">Moderado</td>
+                        <td></td>
+                    <% end%> 
+                <%end%>
+            <% end %>
+          
+        </tr>
+        <%end%> <!-- fin ciclo -->
+    </table>
+</center>
+</br>
+<center>
+    <%= link_to "Exportar a (PDF)", matrix_header_path(@header, format: "pdf"), :class => "active class btn btn-warning" %>
+     | <%= link_to 'Actualizar Riesgos',actualizar_riesgo_evaluado_path(@header.id), :class => "btn btn-info" %>
+     | <%= link_to ' Atrás' ,activity_unitary_task_path(@activity, @unitary_task.id), :class => "icon-arrow-left btn" %>
+</center>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well span3" id="divtabla3">
+
+  <p>
+    <b><h4 align="center">Datos del Criterio de Evaluación</h4></b>
+  </p>
+
+  <p>
+    <b>Compañia:</b>
+    <%= @evaluation_critery.company.name %>
+  </p>
+  <p>
+    <b>Nombre del criterio</b>
+    <%= @evaluation_critery.name %>
+  </p>
+  <p>
+    <b>Descripcion del criterio:</b>
+    <%= @evaluation_critery.description %>
+  </p>
+  <p>
+    <b>Valor:</b>
+    <%= @evaluation_critery.value %>
+  </p>
+  <p>
+    <b>Tipo de Criterio:</b>
+    <%= @evaluation_critery.criteria_type.name %>
+  </p>
+
+
+
+
+<%= link_to ' Actualizar', edit_company_evaluation_critery_path(@company,@evaluation_critery), :class => "active icon-refresh btn btn-warning" %> |
+<%= link_to ' Atrás', company_path(@evaluation_critery.company_id), :class => "icon-arrow-left btn" %>
+
+</div>

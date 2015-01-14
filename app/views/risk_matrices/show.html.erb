@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Personal cause:</b>
+  <%= @risk_matrix.personal_cause %>
+</p>
+
+<p>
+  <b>Work cause:</b>
+  <%= @risk_matrix.work_cause %>
+</p>
+
+<p>
+  <b>Consequence:</b>
+  <%= @risk_matrix.consequence %>
+</p>
+
+<p>
+  <b>Probability:</b>
+  <%= @risk_matrix.probability %>
+</p>
+
+<p>
+  <b>Magnitude:</b>
+  <%= @risk_matrix.magnitude %>
+</p>
+
+<p>
+  <b>Risk:</b>
+  <%= @risk_matrix.risk_id %>
+</p>
+
+<p>
+  <b>Unitary task:</b>
+  <%= @risk_matrix.unitary_task_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_risk_matrix_path(@risk_matrix) %> |
+<%= link_to 'Back', risk_matrices_path %>

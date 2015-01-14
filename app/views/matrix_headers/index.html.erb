@@ -1,0 +1,23 @@
+<h1>Listing matrix_headers</h1>
+
+<table>
+  <tr>
+    <th>Unitary task</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @matrix_headers.each do |matrix_header| %>
+  <tr>
+    <td><%= matrix_header.unitary_task_id %></td>
+    <td><%= link_to 'Show', matrix_header %></td>
+    <td><%= link_to 'Edit', edit_matrix_header_path(matrix_header) %></td>
+    <td><%= link_to 'Destroy', matrix_header, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Matrix header', new_matrix_header_path %>

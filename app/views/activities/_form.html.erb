@@ -1,0 +1,55 @@
+<div class="well">  
+  <%= simple_form_for [@work_flow, @activity] do |f| %>
+    <% if @activity.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+        <ul>
+        <% @activity.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :'Nombre de la Actividad' %><br />
+      <%= f.text_field :description, :class => "input-medium search-query", style: "width:350px" %>
+    </div>
+    <div class="field">
+      <%= f.label :'Tipo de Actividad' %><br />
+      <select name="activity[activity_type_id]">
+        <% @activities.each do |tipo| %>
+        <option value="<%= tipo.id %>">
+          <%= tipo.name %>
+        </option> 
+        <% end %>
+      </select>
+    </div>
+    
+
+    <div class="modal-footer">
+      <center>
+        <% if @boton == 'Agregar'%>
+          <div class="actions">
+            <button type="submit" class="btn btn-success">
+              <i class="icon-ok"> Agregar</i>
+            </button>
+            <i>
+              <%= link_to ' Atras', work_area_work_flow_path(@work_area.id, @work_flow.id), :class => "icon-arrow-left btn" %>
+            </i>
+        <% else %>    
+          <div class="actions">
+            <button type="submit" class="btn btn-warning"> 
+              <i class="icon-refresh"> Actualizar</i>
+            </button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <% end %>
+      </center>
+    </div>
+   
+  <% end %>
+
+</div>
+
+

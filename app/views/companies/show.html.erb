@@ -1,0 +1,202 @@
+<p id="notice"><%= notice %></p>
+
+
+<!--Datos de Empresa-->
+
+<div class="well span3" id="divtabla3">
+	<p>
+		<b><h4 align="center">Datos de la Compañía</h4></b>
+	</p>
+
+	<p>
+		<b>Nombre de la Compañía:</b>
+		<%= @company.name %>
+	</p>
+
+	<p>
+		<b>Direccion de la Compañía:</b>
+		<%= @company.address %>
+	</p>
+
+	<p>
+		<b>Giro de la Compañía:</b>
+		<%= @company.company_type %>
+	</p>
+<!--
+	<%= link_to ' Actualizar Compañía', edit_company_path(@company), :class => "active icon-refresh btn btn-warning" %>
+		<%= link_to ' Atras', companies_path, :class => "icon-arrow-left btn" %>
+-->
+<div>
+		<a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Compañía</a>
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Actualizar Compañía</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+					<%= render 'form' %>
+				</p>
+			</div>
+		</div>
+			| <%= link_to ' Atrás', companies_path, :class => "icon-arrow-left btn" %>
+	</div>
+
+
+</div>
+
+<!--criterios-->
+
+<!--
+
+<div class="well span3" id="divtabla4"> 
+	<p>
+		<b><h4 align="center">Criterios de Evaluación</h4></b>
+	</p>
+	<ul>
+		<% @criterio.each do |c| %>
+		
+			<li>
+				<%= link_to c.name, company_evaluation_critery_path(@company, c.id) %>
+			</li>
+		<% end %>
+	</ul>
+
+	<%= link_to ' Agregar Criterio', new_company_evaluation_critery_path(@company.id), :class => "active icon-pencil btn btn-success" %>
+
+</div> -->
+
+<!--areas de trabajo-->
+
+<!--
+
+<div class="well span6" id="divtabla5">
+	<p>
+		<b><h4 align="center">Listado de Áreas de Trabajo</h4></b>
+	</p>
+	<table class='table'>
+		<tr>
+			<th>Areas de trabajo</th>
+			<th></th>
+		</tr>
+
+		<% @areas.each do |areas| %>
+			<tr>
+				
+				<td><%= link_to areas.name, company_work_area_path(@company,areas.id) %>
+				<td><%= link_to ' Eliminar', company_work_area_path(@company, areas), confirm: "¿Esta seguro que desea eliminar el area de trabajo: #{@company.name}?", method: :delete, :class => " icon-trash btn btn-mini btn-danger" %></td>
+			</tr>
+		<% end %>
+	</table>
+	
+		 <%= link_to ' Agregar Area de Trabajo', new_company_work_area_path(@company.id), :class => "active icon-pencil btn btn-success" %>
+		
+</div> -->
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+	<ul class="nav nav-tabs">
+		<li ><a href="#tab1" data-toggle="tab">Criterios de Evaluación</a></li>
+		<li><a href="#tab2" data-toggle="tab">Listado de Áreas de Trabajo</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane " id="tab1">
+			<p>
+
+
+				<div> 
+					<p>
+						<b><h4 align="center">Criterios de Evaluación</h4></b>
+					</p>
+						 <div class="well" id="divtabla8">
+						<table class='table table-condensed'>
+							<tr>
+								<td><h5>Probabilidad</h5></td>
+								<td><h5>Valor</h5></td>
+								<td></td>
+							</tr>
+								
+							<% @criterio.each do |c| %>
+								<tr>
+
+								<% if c.criteria_type_id == 1%>        
+									<td><%= link_to c.name, company_evaluation_critery_path(@company, c.id) %></td>
+									<td><%= link_to c.value, company_evaluation_critery_path(@company, c.id) %></td>
+									<!--<td><%= link_to c.criteria_type_id, company_evaluation_critery_path(@company, c.id) %></td>-->
+									<td><%= link_to ' Eliminar', company_evaluation_critery_path(@company, c.id), confirm: "¿Esta seguro que desea eliminar el criterio de probabilidad: #{c.name}?", method: :delete, :class => " icon-trash btn btn-mini btn-danger active" %></td>
+								<% end %>
+							</tr>
+							<% end %>
+						</table>
+						<center>
+							<%= link_to ' Agregar probabilidad', new_company_evaluation_critery_path(@company.id, :x => 'probabilidad'), :class => "active icon-pencil btn btn-success" %>
+						</center>
+						</div>
+						
+
+						
+
+
+
+						<div class="well" id="divtabla9">
+						<table class='table table-condensed'>
+							<tr>
+								<td><h5>Consecuencia</h5></td>
+								<td><h5>Valor</h5></td>
+								<td></td>							
+							</tr>
+								
+							<% @criterio.each do |c| %>
+								<tr>
+
+								<% if c.criteria_type_id == 2%>        
+									<td><%= link_to c.name, company_evaluation_critery_path(@company, c.id) %></td>
+									<td><%= link_to c.value, company_evaluation_critery_path(@company, c.id) %></td>
+									<!--<td><%= link_to c.criteria_type_id, company_evaluation_critery_path(@company, c.id) %></td>-->
+									<td><%= link_to ' Eliminar', company_evaluation_critery_path(@company, c.id), confirm: "¿Esta seguro que desea eliminar el criterio de evaluacion: #{c.name}?", method: :delete, :class => " icon-trash btn btn-mini btn-danger active" %></td>
+								<% end %>
+							</tr>
+							<% end %>
+						</table>
+						<center>
+							<%= link_to ' Agregar consecuencia', new_company_evaluation_critery_path(@company.id, :x => 'consecuencia'), :class => "active icon-pencil btn btn-success" %>
+						</center>
+						</div>
+					
+
+				</div>
+
+
+
+			</p>
+		</div>
+		<div class="tab-pane" id="tab2">
+			<p>
+				<div class="well span6" id="divtabla8">
+					<p>
+						<b><h4 align="center">Listado de Áreas de Trabajo</h4></b>
+					</p>
+					<table class='table'>
+						<tr>
+							<th>Áreas de trabajo</th>
+							<th></th>
+						</tr>
+
+						<% @areas.each do |areas| %>
+							<tr>
+								
+								<td><%= link_to areas.name, company_work_area_path(@company,areas.id) %>
+								<td><%= link_to ' Eliminar', company_work_area_path(@company, areas), confirm: "¿Esta seguro que desea eliminar el area de trabajo: #{@company.name}?", method: :delete, :class => "active icon-trash btn btn-mini btn-danger" %></td>
+							</tr>
+						<% end %>
+					</table>
+					
+						 <%= link_to ' Agregar Área de Trabajo', new_company_work_area_path(@company.id), :class => "active icon-pencil btn btn-success" %>
+						
+				</div>
+
+			</p>
+		</div>
+	</div>
+</div>
+

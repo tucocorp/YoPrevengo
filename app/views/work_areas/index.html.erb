@@ -1,0 +1,29 @@
+<h3 align="center">Lista de Areas de Trabajo</h3>
+
+<table class='table' >
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Compañia</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @work_areas.each do |work_area| %>
+  <tr>
+    <td><%= work_area.id %></td>
+    <td><%= work_area.name %></td>
+    <td><%= work_area.description %></td>
+    <td><%= work_area.company_id %></td>
+    <td><%= link_to 'Ver', company_work_area_path(@company , work_area.id), :class => "btn" %></td>
+    <td><%= link_to 'Editar', edit_company_work_area_path(@company, work_area), :class => "btn" %></td>
+    <td><%= link_to 'Eliminar', company_work_area_path(@company, work_area), confirm: 'Esta seguro?', method: :delete, :class => "btn" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Area de Trabajo', new_company_work_area_path, :class => "btn" %>

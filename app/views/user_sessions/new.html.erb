@@ -1,0 +1,19 @@
+<%= form_tag user_sessions_path do %>
+	<br><br>
+	<div class="well span3" id="divuser">
+		<div class="field">
+			<%= label_tag :'Nombre usuario' %>
+			<%= text_field_tag :username, nil, :placeholder => "Escriba su usuario aquí..." %><br />
+		</div>
+		<div class="field">
+			<%= label_tag :Password %>
+			<%= password_field_tag :password, nil, :placeholder => "escriba su password aquí..." %><br />
+		</div>
+
+		<div class="actions">
+			<button type="submit" class="btn btn-inverse"> 
+        		<i class="icon-user"> Iniciar Sesión</i>
+    		</button>
+		</div>
+	</div>
+<% end %>

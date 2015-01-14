@@ -1,0 +1,35 @@
+<h3 align="center">Módulo de usuarios</h3>
+<center>
+<%= link_to ' Agregar usuario', new_user_path, :class => "active icon-pencil btn btn-success" %>
+</center>
+
+</br></br></br>
+
+<div class="well span12">
+  <table class="table">
+    <tr>
+      <th>RUT</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Tipo de Usuario</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.run %></td>
+      <td><%= link_to user.username, user%></td>
+      <td><%= user.lastname %></td>
+      <td><%= user.user_type.name %> </td>
+      <td></td>
+      <td>
+        <%= link_to " Asignar rol", asignarRol_path(user.id), :class => "active icon-eye-open btn btn-mini"  %>
+        <%= link_to ' Eliminar', user, confirm: "Estas seguro que desea eliminar el usuario: #{user.username}", method: :delete, :class => "active icon-trash btn btn-mini btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+</div>
+

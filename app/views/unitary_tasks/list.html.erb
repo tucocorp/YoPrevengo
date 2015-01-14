@@ -1,0 +1,33 @@
+<h2>Nombre Tarea <%= @tarea.id %></h2>
+<h1>Selecciones los riesgos aplican para la tarea unitaria</h1>
+<table class='table table'>
+  <tr>
+    <th>Peligros</th>
+    <th></th>
+    <th>Riesgos</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @riesgos.each do |risk| %>
+  <tr>
+    <% if @riesgo != risk.danger_id %>
+    <% @riesgo = risk.danger_id %>
+    <td><%= risk.danger.description%></td>
+	<td><%= check_box_tag "@riesgoarray", risk.id%></td>    
+    <td><%= risk.id %>-<%= risk.description%></td>
+    <%else%>
+    <td><%= %></td>
+    <td><%= check_box_tag "@riesgoarray", risk.id%></td>
+    <td><%= risk.id %>-<%= risk.description%></td>
+    <%end%>
+   </tr>
+<% end %>
+</table>
+
+<ul>
+<% @riesgoarray.each do |ra| %>  
+  <li><%= ra.id %></li>
+<%end %>  
+
+</ul>

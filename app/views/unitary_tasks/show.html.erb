@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+<div class="well span3" id="divtabla3">
+	<p>
+    	<b><h4 align="center">Datos de la Tarea Unitaria</h4></b>
+  	</p>
+
+	<p>
+		<b>Compañía:</b>
+		<%= @unitary_task.activity.work_flow.work_area.company.name %>
+	</p>
+	<p>
+		<b>Área de Trabajo:</b>
+		<%= @unitary_task.activity.work_flow.work_area.name %>
+	</p>
+	<p>
+		<b>Proceso de Trabajo:</b>
+		<%= @unitary_task.activity.work_flow.name %>
+	</p>
+	<p>
+		<b>Actividad :</b>
+		<%= @unitary_task.activity.description %>
+
+	</p>
+	<p>
+	  <b>Tarea Unitaria :</b>
+	  <%= @unitary_task.description %>
+	</p>
+
+<!--
+	<%= link_to ' Atrás', work_flow_activity_path(@work_flow, @unitary_task.activity_id), :class => "icon-arrow-left btn"%></br>
+-->
+	<div>
+	    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Tarea Unitaria</a>
+	    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	        <h3 id="myModalLabel">Actualizar Tarea Unitaria</h3>
+	      </div>
+	      <div class="modal-body">
+	        <p>
+	          <%= render 'form' %>
+	        </p>
+	      </div>
+	    </div>
+		| <%= link_to ' Atrás', work_flow_activity_path(@work_flow, @unitary_task.activity_id), :class => "icon-arrow-left btn" %></br>
+	</div>
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<center>
+	<div id="divtabla421">
+<%= link_to ' Generar Nueva Matriz',new_matriz_path(@unitary_task), :class => "active icon-pencil btn btn-info" %>
+	</div>
+</center>
+<div class="well span6" id="divtabla44">
+
+<% if @headers.count !=0 %>
+	<b><h4 align="center">Matrices de riesgo</h4></b>
+	
+	<table class="table" >
+	<tr>
+		<th>N° Matriz</th>
+		<th>Fecha creación</th>
+		<th>Última actualización</th>
+		<th></th>
+	</tr>
+	<% @headers.each do |mh|%>
+	<tr align="center">
+		<td><%= @i %></td>
+		<td><%= mh.created_at.day %>/<%= mh.created_at.month %>/<%= mh.created_at.year %></td>
+		<td><%= mh.updated_at.day %>/<%= mh.updated_at.month %>/<%= mh.updated_at.year %></td>
+		<td width="20"><%= link_to ' Ver',matrix_header_path(mh.id), :class => "active btn btn-info" %>
+		<%@i += 1%>	
+	</tr>
+	<% end %>
+	</table>
+<%else%>
+<center>No hay matrices registradas</center>
+<%end%>
+
+</div>

@@ -1,0 +1,31 @@
+<h1>Listing evaluation_criteries</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Value</th>
+    <th>Criteria type</th>
+    <th>Company</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @evaluation_criteries.each do |evaluation_critery| %>
+  <tr>
+    <td><%= evaluation_critery.name %></td>
+    <td><%= evaluation_critery.description %></td>
+    <td><%= evaluation_critery.value %></td>
+    <td><%= evaluation_critery.criteria_type_id %></td>
+    <td><%= evaluation_critery.company_id %></td>
+    <td><%= link_to 'Show', company_evaluation_critery_path(@company, evaluation_critery.id) %></td>
+    <td><%= link_to 'Edit', edit_company_evaluation_critery_path(@company, evaluation_critery) %></td>
+    <td><%= link_to 'Destroy', company_evaluation_critery_path(@company, evaluation_critery), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Evaluation critery', new_company_evaluation_critery_path %>

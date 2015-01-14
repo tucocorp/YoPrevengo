@@ -1,0 +1,36 @@
+<%= form_for @user do |f| %> 
+ <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :username, :disabled => 'disabled' %>
+</div>
+<div class="field">
+    <%= f.label :apellido_paterno %>
+    <%= f.text_field :lastname, :disabled => 'disabled' %>
+</div>
+<div class="field">
+    <%= f.label :apellido_materno %>
+    <%= f.text_field :surname, :disabled => 'disabled' %>
+</div>
+<div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, :disabled => 'disabled' %>
+</div>
+
+<div class='field'>
+	<%= f.label :tipo_de_usuario %>
+<select name="user[user_type_id]">
+	<% @tipoUsuario.each do |tip| %>
+	<option value="<%= tip.id %>"
+		<%= 'selected' if tip.id == @user.user_type_id %> >   
+		<%= tip.name %>
+	</option>
+	<% end %>
+</select>
+</div>
+
+  <div class="form-actions">
+    <%= f.button " Actualizar rol", :class => 'active icon-ok-sign btn-primary', :cont => 1%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancelar")), users_path , :class => 'btn' %>
+  </div>
+ 
+<% end %>

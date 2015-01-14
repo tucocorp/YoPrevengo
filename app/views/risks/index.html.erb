@@ -1,0 +1,32 @@
+<h1>Modulo de Riesgos Y Peligros</h1>
+</br></br><%= link_to 'Agregar Nuevo Peligro', new_danger_path, :class => "btn" %></br></br>
+<table class='table table'>
+  <tr>
+    <th>Peligros</th>
+    <th></th>
+    <th>Riesgos</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @risks.each do |risk| %>
+  <tr>
+    <% if @riesgo != risk.danger_id %>
+    <% @riesgo = risk.danger_id %>
+    <td><%= link_to risk.danger.description, danger_path(risk.danger_id) %></td>
+    <td><%= link_to 'Agregar Riesgo', new_danger_risk_path(risk.danger_id), :class => "btn" %></td>
+    <td><%= link_to risk.description, danger_risk_path(risk.danger_id,risk) %></td>
+    <%else%>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= link_to risk.description, danger_risk_path(risk.danger_id,risk) %></td>
+    <%end%>
+    <td><%= link_to 'Eliminar', danger_risk_path(risk.danger_id,risk), confirm: "¿Esta seguro que desea eliminar el riesgo: #{risk.description}?", method: :delete , :class => "btn" %></td>
+  </tr>
+<% end %> 
+
+</table>
+<br />
+
+<%= link_to 'Agregar riesgo', new_danger_risk_path() %>

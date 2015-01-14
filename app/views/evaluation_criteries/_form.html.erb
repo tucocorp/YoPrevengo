@@ -1,0 +1,48 @@
+<div class="well" id="divtabla2">
+<%= simple_form_for [@company, @evaluation_critery], :validate => true do |f| %>
+    <div class="field">
+      <%= f.label :Nombre %><br />
+      <%= f.text_field :name, style: "width:400px" %>
+    </div>
+    <div class="field">
+      <%= f.label :Descripcion %><br />
+      <%= f.text_field :description, style: "width:400px" %>
+    </div>
+    <div class="field">
+      <%= f.label :Valor %><br />
+      <%= f.number_field :value %>
+    </div>
+    
+    <% if @tipoevaluacion == "probabilidad"%>
+      <div class="field">
+        <%= f.label :"Tipo de criterio de evaluacion" %>
+        <select name="evaluation_critery[criteria_type_id]">
+            <option value=1>
+             <%= @tipoevaluacion %>
+            </option>
+        </select>
+      </div>
+    <% else %>
+      <div class="field">
+        <%= f.label :"Tipo de criterio de evaluacion" %>
+        <select  name="evaluation_critery[criteria_type_id]">
+            <option value=2>
+             <%= @tipoevaluacion %>
+            </option>
+        </select>
+      </div>
+    <% end %>
+
+    <% if @boton == 'Agregar'%>
+      <div class="actions">
+      <button type="submit" class="btn btn-success">
+        <i class="icon-ok"> Agregar</i>
+      </button>
+    <% else %>
+      <div class="actions">
+      <button type="submit" class="btn btn-warning"> 
+        <i class="icon-refresh"> Actualizar</i>
+      </button>
+    <% end %>
+
+  <% end %>

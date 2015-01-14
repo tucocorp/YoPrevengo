@@ -1,0 +1,26 @@
+<%= form_tag :action =>'guardarasignar' do %>
+<h3 align="center">Tarea Unitaria: <%= @unitary_task.description %></h3>
+</br></br>
+
+<div class="field" align="center">
+	<table align="center" class="table table-condensed table-striped">
+		<tr><td colspan="2" align='center'><h4>Riesgos asignables</h4></tr>
+		<%= hidden_field_tag "matrix_header[risk_ids][]", nil  %>
+	
+	
+		<% Risk.all.each do |risk| %>
+		
+		<tr>
+		 	<td><%= check_box_tag "matrix_header[risk_ids][]", risk.id , @header.risk_ids.include?(risk.id) %></td>
+		 	<td><%= label_tag dom_id(risk), risk.description%></td>
+		</tr>
+		<%end%>
+	</table>
+</div>
+
+<div class= "actions">
+	<%= hidden_field_tag :tarea_id, @unitary_task.id  %>
+	<%= hidden_field_tag :header_id, @header.id  %>
+	<%= submit_tag @boton, :class => "btn btn-success"%>
+</div>	
+<%end %>

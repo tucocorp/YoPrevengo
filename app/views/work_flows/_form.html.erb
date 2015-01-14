@@ -1,0 +1,46 @@
+<div class="well">
+  
+  <%= simple_form_for [@work_area, @work_flow] do |f| %>
+    <% if @work_flow.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@work_flow.errors.count, "error") %> prohibited this work_flow from being saved:</h2>
+
+        <ul>
+        <% @work_flow.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :'Nombre del Proceso' %><br />
+      <%= f.text_field :name, :class => "input-medium search-query", style: "width:400px" %>
+    </div>
+    <div class="field">
+      <%= f.label :'Descripción del Proceso' %><br />
+      <%= f.text_field :description, :class => "input-medium search-query", style: "width:400px" %>
+    </div>
+
+    <div class="modal-footer">
+      <center>
+        <% if @boton == 'Agregar'%>
+          <div class="actions">
+            <button type="submit" class="btn btn-success">
+              <i class="icon-ok"> Agregar</i>
+            </button>
+            <i>
+              <%= link_to ' Atras', company_work_area_path(@company.id, @work_area.id) , :class => "icon-arrow-left btn" %>
+            </i>
+        <% else %>    
+          <div class="actions">
+            <button type="submit" class="btn btn-warning"> 
+              <i class="icon-refresh"> Actualizar</i>
+            </button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <% end %>
+      </center>
+    </div>
+
+  <% end %>
+
+</div>

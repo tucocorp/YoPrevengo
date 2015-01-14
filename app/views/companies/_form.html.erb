@@ -1,0 +1,60 @@
+<div class="well">
+
+<!--<div class="well" id="divtabla2">-->
+  <%= form_for(@company) do |f| %>
+    <% if @company.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+        <ul>
+        <% @company.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :'Nombre de la compañía' %>
+      <%= f.text_field :name, :class => "input-medium search-query", style: "width:400px"  %>
+    </div>
+    <br />
+    <div class="field" >
+      <%= f.label :'Dirección de la compañía' %>
+      <%= f.text_field :address, :class => "input-medium search-query", style: "width:400px" %>
+    </div>
+    <br />
+    <div class="field">
+      <%= f.label :'Giro o Actividad Económica' %>
+      <%= f.text_field :company_type, :class => "input-medium search-query", style: "width:400px" %>
+    </div>
+    <br />
+    
+
+    <div class="modal-footer">
+      <center>
+        <% if @boton == 'Agregar'%>
+          <div class="actions">
+          <button type="submit" class="btn btn-success">
+             <i class="icon-ok"> Agregar</i>
+          </button>
+          
+          <i>
+            | <%= link_to ' Atrás', companies_path, :class => "icon-arrow-left btn btn-middle" %>
+          </i>
+        <%  else %>    
+          <div class="actions">
+            <button type="submit" class="btn btn-warning"> 
+              <i class="icon-refresh"> Actualizar</i>
+            </button>
+            <%= @boton %>
+            |<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <!--<%= link_to ' Atras', companies_path, :class => "icon-arrow-left btn btn-middle" %>-->
+        <% end %>
+      </center>
+    </div>
+
+    
+<% end %>
+
+</div>

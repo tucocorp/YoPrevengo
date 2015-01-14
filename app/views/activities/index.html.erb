@@ -1,0 +1,29 @@
+<h3 align="center">Lista de Actividades</h3>
+
+<table class='table table' >
+  <tr>
+    <th>ID</th>
+    <th>Descripción</th>
+    <th>ID de Proceso de Trabajo</th>
+    <th>Tipo de Actividad</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @activities.each do |activity| %>
+  <tr>
+    <td><%= activity.id %></td>
+    <td><%= activity.description %></td>
+    <td><%= activity.work_flow_id %></td>
+    <td><%= activity.activity_type_id %></td>
+    <td><%= link_to 'ver', work_flow_activity_path(@work_flow, activity.id) %></td>
+    <td><%= link_to 'Editar', edit_work_flow_activity_path(@work_flow, activity) %></td>
+    <td><%= link_to 'Eliminar', work_flow_activity_path(@work_flow, activity), confirm: 'Esta seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Actividad', new_work_flow_activity_path %>

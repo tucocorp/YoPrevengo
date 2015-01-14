@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well span3" id="divtabla3">
+  <p>
+    <b><h4 align="center">Datos del Proceso de Trabajo</h4></b>
+  </p>
+
+  <p>
+    <b>Compañía:</b>
+    <%= @work_area.company.name %>
+  </p>
+
+  <p>
+    <b>Área de Trabajo:</b>
+    <%= @work_flow.work_area.name %>
+  </p>
+
+  <p>
+    <b>Proceso de Trabajo:</b>
+    <%= @work_flow.name %>
+  </p>
+
+  <p>
+    <b>Descripción:</b>
+    <%= @work_flow.description %>
+  </p>
+<!--
+  <%= link_to 'Actualizar Proceso de Trabajo', edit_work_area_work_flow_path(@work_area, @work_flow), :class => "btn btn-info" %>
+-->
+
+  <div>
+    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Proceso de Trabajo</a>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Actualizar Proceso de Trabajo</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= render 'form' %>
+        </p>
+      </div>
+    </div>
+      | <%= link_to ' Atrás', company_work_area_path(@company.id, @work_flow.work_area_id), :class => "icon-arrow-left btn" %>
+  </div>
+
+</div>
+
+<div class="well span6" id="divtabla42">
+          <p>
+            <b><h4 align="center">Listado de Actividades</h4></b>
+          </p>
+          <table class='table'>
+            <tr>
+              <th>Actividades</th>
+              <th></th>
+            </tr>
+
+           <% @actividades.each do |actividades| %>
+              <tr>
+                
+                <td><%= link_to actividades.description, work_flow_activity_path(@work_flow, actividades.id) %>
+                <td><%= link_to ' Eliminar', work_flow_activity_path(@work_flow, actividades.id), confirm: "¿Esta seguro que desea eliminar la actividad : #{actividades.description}?", method: :delete, :class => "active icon-trash btn btn-mini btn-danger" %></td>
+              </tr>
+            <% end %>
+          </table>
+          </br><%= link_to ' Agregar Actividad', new_work_flow_activity_path(@work_flow.id), :class => "active icon-pencil btn btn-success" %>
+</div>
+
+
+<!--
+<p>
+  <b>Actividades:</b>
+  </br><%= link_to 'Agregar nueva Actividad', new_work_flow_activity_path(@work_flow.id), :class => "btn btn-info" %>
+  <ul>
+  	<% @actividades.each do |actividades| %>
+  		<li>
+  			<%= link_to actividades.description, work_flow_activity_path(@work_flow, actividades.id) %>
+        <%= link_to 'Eliminar', work_flow_activity_path(@work_flow, actividades.id), confirm: "¿Esta seguro que desea eliminar la actividad : #{actividades.description}?", method: :delete, :class => "btn btn-warning" %>
+  		</li>
+  	<% end %>
+  </ul>
+</p>
+-->

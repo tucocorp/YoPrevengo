@@ -1,0 +1,37 @@
+<%= form_for(@preventive_procedure) do |f| %>
+  <% if @preventive_procedure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@preventive_procedure.errors.count, "error") %> prohibited this preventive_procedure from being saved:</h2>
+
+      <ul>
+      <% @preventive_procedure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :monitoring_time %><br />
+    <%= f.text_field :monitoring_time %>
+  </div>
+  <div class="field">
+    <%= f.label :control_amount %><br />
+    <%= f.number_field :control_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :control_responsable %><br />
+    <%= f.text_field :control_responsable %>
+  </div>
+  <div class="field">
+    <%= f.label :control_measure %><br />
+    <%= f.text_field :control_measure %>
+  </div>
+  <div class="field">
+    <%= f.label :risk_matrix_id %><br />
+    <%= f.number_field :risk_matrix_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

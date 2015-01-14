@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well span3" id="divtabla3">
+
+  <p>
+    <b><h4 align="center">Datos de la Actividad</h4></b>
+  </p>
+
+  <p>
+    <b>Compañía:</b>
+    <%= @activity.work_flow.work_area.company.name %>
+  </p>
+
+  <p>
+    <b>Área de Trabajo:</b>
+    <%= @activity.work_flow.work_area.name %>
+  </p>
+
+  <p>
+    <b>Proceso de Trabajo:</b>
+    <%= @activity.work_flow.name %>
+  </p>
+
+  <p>
+    <b>Actividad:</b>
+    <%= @activity.description %>
+  </p>
+
+  <p>
+    <b>Tipo de Actividad:</b>
+    <%=@activity.activity_type.name %>
+  </p>
+  <!--
+  <%= link_to 'Actualizar Actividad', edit_work_flow_activity_path(@work_flow, @activity), :class => "btn btn-info" %>
+  -->
+
+  <div>
+    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Actividad</a>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Actualizar Actividad</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= render 'form' %>
+        </p>
+      </div>
+    </div>
+     | <%= link_to ' Atras', work_area_work_flow_path(@work_area.id, @activity.work_flow_id), :class => "icon-arrow-left btn" %>
+  </div>
+
+
+</div>
+</br></br>
+<div class="well span6" id="divtabla421">
+          <p>
+            <b><h4 align="center">Listado de Tarea Unitarias</h4></b>
+          </p>
+          <table class='table'>
+            <tr>
+              <th>Tarea Unitarias</th>
+              <th></th>
+            </tr>
+
+           <% @unitarytask.each do |ut| %>
+              <tr>
+                
+                <td><%= link_to ut.description, activity_unitary_task_path(@activity, ut.id) %>
+                <td width="100"><%= link_to ' Eliminar', activity_unitary_task_path(@activity, ut.id), confirm: "¿Esta seguro que desea eliminar la tarea unitaria: #{ut.description}", method: :delete, :class => "active icon-trash btn btn-mini btn-danger" %></td>
+              </tr>
+            <% end %>
+          </table>
+          </br><%= link_to ' Agregar Tarea Unitaria', new_activity_unitary_task_path(@activity.id), :class => "active icon-pencil btn btn-success" %>
+</div>
+
+
+<!--
+<p>
+  <b>Tareas Unitarias:</b>
+  </br><%= link_to 'Agregar nueva Tarea Unitaria', new_activity_unitary_task_path(@activity.id), :class => "btn btn-info" %>
+  <ul>
+  	<% @unitarytask.each do |ut| %>
+  		<li>
+  			<%= link_to ut.description, activity_unitary_task_path(@activity, ut.id) %>
+        <%= link_to 'Eliminar', activity_unitary_task_path(@activity, ut.id), confirm: "¿Esta seguro que desea eliminar la tarea unitaria: #{ut.description}", method: :delete, :class => "btn btn-warning" %>
+  		</li>
+  	<% end %>
+  </ul>
+</p>
+<%= link_to 'Atras', work_area_work_flow_path(@work_area.id, @activity.work_flow_id), :class => "btn btn-warning" %>
+-->

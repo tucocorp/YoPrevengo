@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="well span3" id="divtabla3">
+	<p>
+    <b><h4 align="center">Datos del Daño</h4></b>
+  </p>
+	<p>
+	  <b>Descripción:</b>
+	  <%= @damage.description %>
+	</p>
+
+<!--
+<%= link_to 'Actualizar', edit_damage_path(@damage), :class => "btn btn-warning" %> |
+<%= link_to 'Atras', damages_path, :class => "btn btn-warning" %>
+
+-->
+  <div>
+    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Daño</a>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Actualizar Daño</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= render 'form' %>
+        </p>
+      </div>
+    </div>
+      <%= link_to ' Atrás', damages_path, :class => "icon-arrow-left btn" %>
+  </div>
+
+
+
+
+</div>

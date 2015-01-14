@@ -1,0 +1,58 @@
+<h3 align="center">Listado de Matrices de Riesgo</h3>
+
+<div class="alert" align="center">
+    <%= form_tag risk_matrices_path,:method => 'get' do %>
+            <%= hidden_field_tag :direction, params[:direction] %>
+            <%= hidden_field_tag :sort, params[:sort] %>
+        <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-warning' %>
+        </p>
+        <p>Ingrese el tipo de clasificación a buscar</p>
+    <% end %>
+</div>
+
+
+
+<table class="table table-bordered">
+  <tr>
+    <th>Id</th>
+    <th>Tarea Unitaria</th>
+    <th>Peligro</th>
+    <th>Riesgo</th>
+    <th>Causa Personal</th>
+    <th>Causa Trabajo</th>
+    <th>Probabilidad</th>
+    <th>Consecuencia</th>
+    <th>Magnitud</th>
+    <th>Clasificación</th>
+    
+    
+    <!--<th>Responsable</th>-->
+    <!--<th>Generate</th>
+    <th></th>-->
+  </tr>
+
+<% @risk_matrices.each do |risk_matrix| %>
+  <tr>
+    <td><%= risk_matrix.id %></td>
+    <td><%= risk_matrix.matrix_header.unitary_task.description %></td>
+    <td><%= risk_matrix.risk.danger.description %></td>
+    <td><%= risk_matrix.risk.description %></td>
+    <td><%= risk_matrix.personal_cause %></td>
+    <td><%= risk_matrix.work_cause %></td>
+    <td><%= risk_matrix.probability %></td>
+    <td><%= risk_matrix.consequence %></td>
+    <td><%= risk_matrix.magnitude %></td>
+    <td><%= risk_matrix.rating %></td>
+    
+    
+    <!--<td><%= risk_matrix.resposable %></td>-->
+    <!--<td><%= risk_matrix.generate %></td>  
+    <td><%= link_to 'Show', risk_matrix %></td>
+    <td><%= link_to 'Edit', edit_risk_matrix_path(risk_matrix) %></td>
+    <td><%= link_to 'Destroy', risk_matrix, confirm: 'Are you sure?', method: :delete %></td>-->
+  </tr>
+<% end %>
+<%= will_paginate @risk_matrices %>
+</table>

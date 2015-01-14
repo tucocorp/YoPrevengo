@@ -1,0 +1,77 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well span3" id="divtabla3">
+
+  <p>
+    <b><h4 align="center">Datos del Riesgo</h4></b>
+  </p>
+  <p>
+  	<b>Nombre del Riesgo:</b>
+  	<%= @risk.description %>
+	</p>
+  <p>
+  	<b>Peligro asociado:</b>
+  	<%= @risk.danger.description %>
+	</p>
+
+  <div>
+    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Riesgo</a>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Actualizar Riesgo</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= render 'form' %>
+        </p>
+      </div>
+
+    </div>
+      <%= link_to ' Atrás', dangers_path, :class => "icon-arrow-left btn" %>      
+  </div>
+
+</div>
+
+
+<div>
+	<div class="well span6" id="divtabla42">
+	          <p>
+	            <b><h4 align="center">Daños Asignados</h4></b>
+	          </p>
+	          <table class='table'>
+	          
+	            <ul>
+	              <% @risk.damages.each do |damage|%>
+	                <tr>
+	                  <td><li><%= damage.description %></li></td>
+	                </tr>
+	              <% end %>
+	            </ul>
+	          </table>
+	          
+	</div>
+
+</div>
+<!--
+<p>
+  <b>Peligro asociado</b>
+  <%= @risk.danger.description %>
+</p>
+
+<p>
+  <b>Nombre del iesgo:</b>
+  <%= @risk.description %>
+</p>
+
+
+<p>Consecuencias asignables:</p>
+<ul>
+<li><b>ID - Nombre</b> </li> 
+<% @risk.damages.each do |damage|%>
+  <li><%=damage.id%> - <%=damage.description%></li> 
+<%end%>
+</ul>
+<%= link_to 'Actualizar Riesgo', edit_danger_risk_path(@danger, @risk), :class => "btn btn-warning"  %> |
+<%= link_to 'Atras', dangers_path , :class => "btn btn-warning" %>
+-->

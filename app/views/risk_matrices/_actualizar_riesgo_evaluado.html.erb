@@ -1,0 +1,111 @@
+<%= form_tag  :action =>'guardarActualizarRiesgoEvaluado' do %>
+<center>
+
+    <p>
+        <b>Compañia: </b><%= @company.name%>
+    </p>
+
+     <p>
+        <b>Tarea Unitaria: </b><%= @unitary_task.description %>
+     </p>
+</center>
+ 
+ </br>
+
+
+<div align="center">
+    <table border="1" class="table-condensed table-striped">
+        <tr><th colspan="5" align="center">Valoración</th></tr>
+        <tr>  
+            <th>Probabilidad</th>
+            <% @evaluation_critery.each do |e| %>
+                
+                <% if e.criteria_type_id == 1 %>
+                    <td><%= e.value%> = <%= e.name%> </td> 
+                <% end%>
+
+            <%end %>
+
+        </tr>
+        <tr>    
+             <th>Consecuecia</th> 
+            <% @evaluation_critery.each do |e| %>
+
+                <% if e.criteria_type_id == 2 %>
+                    <td><%= e.value%> = <%= e.name%> </td>
+                <% end%>            
+            <%end%>
+        </tr>
+    </table>
+</div>
+
+<!--
+
+
+<table border="1">
+    <tr>  
+        
+        <% @evaluation_critery.each do |e| %>            
+            <% if e.criteria_type_id == 1 %>
+                <td><%= e.value%> <%= e.name%> <%= e.criteria_type_id%> </td> 
+            <% end%>
+
+        <%end %>
+
+    </tr>
+</table>
+
+<table border="1">    
+    <td>  
+        <% @evaluation_critery.each do |e| %>
+            <% if e.criteria_type_id == 2 %>
+                <%= e.value%> <%= e.name%> <%= e.criteria_type_id%>
+            <% end%>            
+        <%end %>
+    </td>
+</table>
+-->
+
+</br>
+<center>
+    <table border="1" class="table-condensed">
+        <tr>
+            <th rowspan="2">Peligro</th>
+            <th rowspan="2">Riesgo</th>
+            <th colspan="2">Causa Básica</th>
+            <th rowspan="2">Probabilidad</th>
+            <th rowspan="2">Consecuencia</th>    
+            
+        </tr>
+        <tr>
+            <th>Factor Personal</th>
+            <th>Factor Trabajo</th>  
+        </tr>
+
+        <% @risk_matrix.each do |rm|%>
+            
+            <tr>
+                <%= hidden_field_tag "matriz[]", @risk_matrix %>
+                <%= hidden_field_tag "matrix_id[]", rm.id %>
+                <td><%= rm.risk.danger.description %></td>
+                <td><%= rm.risk.description%></td>
+                <td><%= text_field_tag "personal_cause[]", rm.personal_cause %></td>
+                <td><%= text_field_tag "work_cause[]", rm.work_cause %></td>
+                <td><%= select_tag("probability[]", options_from_collection_for_select(@evaluation_critery.where(:criteria_type_id => 2),  "value","value", rm.probability ) , :style => "width:90px") %></td>
+                <td><%= select_tag("consequence[]", options_from_collection_for_select(@evaluation_critery.where(:criteria_type_id => 1), "value", "value", rm.consequence ) , :style => "width:90px") %></td>    
+            
+            </tr>
+        <%end%>
+        <%= hidden_field_tag "tarea_id", @unitary_task.id %>
+        <%= hidden_field_tag "header_id", @header.id %>
+        <%= hidden_field_tag "conse_max" ,@consecuencia.last.value%>
+        <%= hidden_field_tag "cant_criterio" ,@r.count%>
+    </table>
+</center>
+<br />
+<center>
+    <div class="actions">
+        <%= submit_tag "Actualizar Riesgos", :class => "icon-refresh btn btn-warning" %>
+        <% end %>
+    </div>
+</center>

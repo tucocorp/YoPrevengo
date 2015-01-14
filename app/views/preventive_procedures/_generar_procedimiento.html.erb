@@ -1,0 +1,49 @@
+<%= form_tag  :action =>'guardarProcedimiento' do %>
+  <center>
+   <p>
+      <b>Tarea Unitaria : </b><%= @unitary_task.description %>
+   </p>
+  </center>
+  </br></br> 
+  <%= hidden_field_tag "tarea_id", @unitary_task.id %>
+  <%= hidden_field_tag "header_id", @header.id %>
+  <%= hidden_field_tag "risk_matrix_id", @risk_matrix.id %>
+  
+  <table border="1" class="table-condensed">
+
+    <tr>
+        <th>Peligro</th>
+        <th>Riesgo</th>
+        <th>Causa Básica</th>
+        <th>Tiempo de Seguimiento</th>
+        <th>Cantidad de Controles</th>   
+        <th>Responsable</th>
+        <th>Control a Aplicar</th>
+    </tr>
+
+    <tr>
+        <td rowspan=2><%= @risk.danger.description %></br></td>
+        <td rowspan=2><%= @risk.description%></br></td>
+        <td><%= @risk_matrix.personal_cause %></td>
+        <td align="center"><%= text_field_tag "monitoring_time[]",nil, :style => "width:60px" %></td>
+        <td align="center"><%= number_field_tag "control_amount[]",nil, :style => "width:50px" %></td>
+        <td><%= text_field_tag "control_responsable[]" %></td>
+        <td><%= text_field_tag "control_measure[]" %></td>
+
+     </tr>
+     <tr>
+        <td><%= @risk_matrix.work_cause%></td>
+        <td align="center"><%= text_field_tag "monitoring_time1[]",nil, :style => "width:60px"%></td>
+        <td align="center"><%= number_field_tag "control_amount1[]",nil, :style => "width:50px" %></td>
+        <td><%= text_field_tag "control_responsable1[]" %></td>
+        <td><%= text_field_tag "control_measure1[]"%></td>
+     </tr>
+  </table>
+  </br>
+  <center>
+    <div class="actions">
+      <%= submit_tag "Generar Procedimiento Preventivo", :class =>"btn btn-success" %>
+      <%= link_to ' Atrás' ,matrix_header_path(@header.id), :class => "icon-arrow-left btn"  %>
+    </div>
+  </center>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_for(@risk_matrix) do |f| %>
+  <% if @risk_matrix.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@risk_matrix.errors.count, "error") %> prohibited this risk_matrix from being saved:</h2>
+
+      <ul>
+      <% @risk_matrix.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :personal_cause %><br />
+    <%= f.text_field :personal_cause %>
+  </div>
+  <div class="field">
+    <%= f.label :work_cause %><br />
+    <%= f.text_field :work_cause %>
+  </div>
+  <div class="field">
+    <%= f.label :consequence %><br />
+    <%= f.number_field :consequence %>
+  </div>
+  <div class="field">
+    <%= f.label :probability %><br />
+    <%= f.number_field :probability %>
+  </div>
+  <div class="field">
+    <%= f.label :magnitude %><br />
+    <%= f.number_field :magnitude %>
+  </div>
+  <div class="field">
+    <%= f.label :risk_id %><br />
+    <%= f.number_field :risk_id %>
+  </div>
+  <div class="field">
+    <%= f.label :unitary_task_id %><br />
+    <%= f.number_field :unitary_task_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

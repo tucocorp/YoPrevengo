@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Risk:</b>
+  <%= @risks_damage.risk_id %>
+</p>
+
+<p>
+  <b>Damage:</b>
+  <%= @risks_damage.damage_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_risks_damage_path(@risks_damage) %> |
+<%= link_to 'Back', risks_damages_path %>

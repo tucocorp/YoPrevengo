@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  personal_cause: MyString
+  work_cause: MyString
+  consequence: 1
+  probability: 1
+  magnitude: 1
+  risk_id: 1
+  unitary_task_id: 1
+
+two:
+  personal_cause: MyString
+  work_cause: MyString
+  consequence: 1
+  probability: 1
+  magnitude: 1
+  risk_id: 1
+  unitary_task_id: 1

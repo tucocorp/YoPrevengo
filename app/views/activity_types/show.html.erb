@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @activity_type.name %>
+</p>
+
+
+<%= link_to 'Editar', edit_activity_type_path(@activity_type) %> |
+<%= link_to 'Atras', activity_types_path %>

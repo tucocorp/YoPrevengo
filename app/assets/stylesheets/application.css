@@ -1,0 +1,216 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+#divuser{
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 45%;
+	left: 50%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla{
+	width: 500px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 45%;
+	left: 45%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla1{
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 40%;
+	left: 45%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla2{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 40%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+#divtabla3{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 25%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla4{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 57%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+
+#divtabla41{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 60%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla42{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 65%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla421{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 70%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla43{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 75%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla44{
+	
+	position: absolute;
+	top: 75%;
+	left: 43%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+
+
+#divtabla5{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 90%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+#divtabla6{
+	width: 450px;
+	
+	overflow: hidden;
+
+	position: absolute;
+	top: 150%;
+	left: 48%;
+
+	margin-top: -100px;
+	margin-left: -220px;
+}
+
+
+#divtabla7{
+
+position: absolute;
+
+	left: 30%;
+	
+	
+}
+
+#divtabla8{
+
+position: absolute;
+
+	left: 20%;
+	
+	
+}
+
+#divtabla9{
+position: absolute;
+	left: 60%;
+}
+
+#divtabla10{
+margin-left: 400px;
+}
+
+#divtabla11{
+
+position: absolute;
+
+	left: 15%;
+	
+	
+}
+

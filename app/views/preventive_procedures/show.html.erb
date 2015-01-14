@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Monitoring time:</b>
+  <%= @preventive_procedure.monitoring_time %>
+</p>
+
+<p>
+  <b>Control amount:</b>
+  <%= @preventive_procedure.control_amount %>
+</p>
+
+<p>
+  <b>Control responsable:</b>
+  <%= @preventive_procedure.control_responsable %>
+</p>
+
+<p>
+  <b>Control measure:</b>
+  <%= @preventive_procedure.control_measure %>
+</p>
+
+<p>
+  <b>Risk matrix:</b>
+  <%= @preventive_procedure.risk_matrix_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_preventive_procedure_path(@preventive_procedure) %> |
+<%= link_to 'Back', preventive_procedures_path %>

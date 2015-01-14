@@ -1,0 +1,63 @@
+<%= form_for @user, :html => { :class => 'form-horizontal' }, :validate => true  do |f| %>
+  <div class="field">
+    <strong><%= f.label :"Rut" %></strong>
+    <%= f.text_field :run, :class => "input-medium search-query" %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :"Nombre" %>
+    <%= f.text_field :username, :class => "input-medium search-query", style: "width:400px"  %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :"Apellido Paterno" %>
+    <%= f.text_field :lastname, :class => "input-medium search-query", style: "width:400px"  %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :"Apellido Materno" %>
+    <%= f.text_field :surname, :class => "input-medium search-query", style: "width:400px"  %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :"Telefono de contacto" %>
+    <%= f.text_field :phono, :class => "input-medium search-query" %>
+  </div></br>
+
+  <div class="field">
+    <%= f.label :"Correo Electronico" %>
+    <%= f.text_field :email, :class => "input-medium search-query" %>
+  </div></br>
+
+  <% if @res == 0 %> 
+   <div class="field">
+      <%= f.label :"Contraseña" %>
+      <%= f.password_field :password, :class => "input-medium search-query", style: "width:200px"  %>
+    </div></br>
+
+    <div class="field">
+      <%= f.label :"Confirmacion de contraseña" %>
+      <%= f.password_field :password_confirmation, :class => "input-medium search-query" %>
+    </div>
+  <%end%>
+
+  <div class="modal-footer">
+      <center>
+        <% if @usuarios == 'Agregar'%>
+          <div class="actions">
+            <button type="submit" class="btn btn-success">
+              <i class="icon-ok"> Agregar</i>
+            </button>
+            <i>
+              <%= link_to ' Atrás', users_path , :class => "icon-arrow-left btn" %>
+            </i>
+        <% else %>    
+          <div class="actions">
+            <button type="submit" class="btn btn-warning"> 
+              <i class="icon-refresh"> Actualizar</i>
+            </button>
+            <%= link_to ' Atrás', users_path, :class => "icon-arrow-left btn" %>
+        <% end %>
+      </center>
+    </div>
+<% end %>

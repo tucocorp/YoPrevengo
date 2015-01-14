@@ -1,0 +1,93 @@
+<p id="notice"><%= notice %></p>
+
+
+<!--Datos de Empresa-->
+
+<div class="well span3" id="divtabla3">
+  <p>
+    <b><h4 align="center">Datos del Área de Trabajo</h4></b>
+  </p>
+
+ <p>
+  <b>Compañía:</b>
+  <%= @work_area.company.name %>
+</p>
+<p>
+  <b>Área de Trabajo:</b>
+  <%= @work_area.name %>
+</p>
+
+<p>
+  <b>Descripción:</b>
+  <%= @work_area.description %>
+</p>
+<!--
+  <%= link_to 'Actualizar Área de Trabajo', edit_company_work_area_path(@company,@work_area), :class => "active btn btn-warning" %>
+  <%= link_to ' Atras', company_path(@work_area.company_id), :class => "icon-arrow-left btn" %>
+
+-->
+
+  <div>
+    <a href="#myModal" role="button" class="icon-refresh btn btn-warning" data-toggle="modal"> Actualizar Área de Trabajo</a>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Actualizar Área de Trabajo</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= render 'form' %>
+        </p>
+      </div>
+    </div>
+      | <%= link_to ' Atrás', company_path(@work_area.company_id), :class => "icon-arrow-left btn" %>
+  </div>
+
+</div>
+
+
+
+
+
+<!--
+
+
+<p>
+  <b>Procesos de Trabajo:</b>
+  </br><%= link_to 'Agregar nuevo Proceso de Trabajo', new_work_area_work_flow_path(@work_area), :class => "btn btn-info" %>
+
+  <ul>
+  	<% @procesos.each do |procesos| %>
+  		<li>
+  			<%= link_to procesos.name, work_area_work_flow_path(@work_area, procesos.id) %>
+        <%= link_to 'Eliminar', work_area_work_flow_path(@work_area, procesos.id), confirm: "¿Esta seguro que desea eliminar el proceso de trabajo: #{procesos.name}?", method: :delete , :class => "btn btn-warning" %>
+  		</li>
+  	<% end %>
+  </ul>
+</p>
+
+-->
+
+
+<div class="well span6" id="divtabla41">
+          <p>
+            <b><h4 align="center">Listado de Procesos de Trabajo</h4></b>
+          </p>
+          <table class='table'>
+            <tr>
+              <th>Procesos de trabajo</th>
+              <th></th>
+            </tr>
+
+            <% @procesos.each do |procesos| %>
+              <tr>
+                
+                <td><%= link_to procesos.name, work_area_work_flow_path(@work_area, procesos.id) %>
+                <td><%= link_to ' Eliminar', work_area_work_flow_path(@work_area, procesos.id), confirm: "¿Esta seguro que desea eliminar el proceso de trabajo: #{procesos.name}?", method: :delete , :class => "active icon-trash btn btn-mini btn-danger" %></td>
+              </tr>
+            <% end %>
+          </table>
+          </br><%= link_to ' Agregar Proceso de Trabajo', new_work_area_work_flow_path(@work_area), :class => "active icon-pencil btn btn-success" %>
+</div>
+
+

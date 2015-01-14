@@ -1,0 +1,25 @@
+<h1>Listing risks_damages</h1>
+
+<table>
+  <tr>
+    <th>Risk</th>
+    <th>Damage</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @risks_damages.each do |risks_damage| %>
+  <tr>
+    <td><%= risks_damage.risk_id %></td>
+    <td><%= risks_damage.damage_id %></td>
+    <td><%= link_to 'Show', risks_damage %></td>
+    <td><%= link_to 'Edit', edit_risks_damage_path(risks_damage) %></td>
+    <td><%= link_to 'Destroy', risks_damage, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Risks damage', new_risks_damage_path %>

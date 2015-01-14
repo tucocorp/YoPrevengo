@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  risk_id: 1
+  damage_id: 1
+
+two:
+  risk_id: 1
+  damage_id: 1

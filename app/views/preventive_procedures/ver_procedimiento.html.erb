@@ -1,0 +1,50 @@
+<h3 align="center">Procedimiento Preventivo</h3>
+<center>
+<p>
+  <b>Tarea Unitaria: </b><%= @unitary_task.description %>
+</p>
+</center>
+ </br></br> 
+ 
+ <%= hidden_field_tag "tarea_id", @unitary_task.id %>
+ <%= hidden_field_tag "risk_matrix_id", @risk_matrix.id %>
+
+<center>
+  <table border="1" class="table-condensed">
+    <tr>
+      <th>Peligro</th>
+      <th>Riesgo</th>
+      <th>Causa Básica</th>
+      <th>Tiempo de Seguimiento</th>
+      <th>Cantidad de Controles</th>   
+      <th>Responsable</th>
+      <th>Control a Aplicar</th>
+    </tr>
+
+    <tr>
+      <td rowspan=2><%= @risk.danger.description %></br></td>
+      <td rowspan=2><%= @risk.description%></br></td>
+      <% @procedimiento.each do |procedimiento|%>
+        <% if @i == 0 %>
+          <td><%= @risk_matrix.personal_cause %></td>
+          <% @i += 1 %>
+        <% else%>
+          <td><%= @risk_matrix.work_cause%></td>
+        <% end%>
+        <td align="center"><%= procedimiento.monitoring_time%></td>
+        <td align="center"><%= procedimiento.control_amount %></td>
+        <td><%= procedimiento.control_responsable %></td>
+        <td><%= procedimiento.control_measure%></td>
+    </tr>
+    <tr>
+      <%end%>
+    </tr>
+
+  </table>
+</center>
+
+</br></br>
+<center>
+  <%= link_to ' Actualizar Procedimiento Preventivo' ,actualizar_procedimiento_path(@risk_matrix.id), :class => "active icon-refresh btn btn-warning"%>
+   | <%= link_to ' Atrás' ,matrix_header_path(@header.id), :class => "icon-arrow-left btn"%>
+</center>

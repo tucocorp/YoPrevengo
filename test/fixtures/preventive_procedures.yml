@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  monitoring_time: MyString
+  control_amount: 1
+  control_responsable: MyString
+  control_measure: MyString
+  risk_matrix_id: 1
+
+two:
+  monitoring_time: MyString
+  control_amount: 1
+  control_responsable: MyString
+  control_measure: MyString
+  risk_matrix_id: 1

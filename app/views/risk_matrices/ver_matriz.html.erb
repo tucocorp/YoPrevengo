@@ -1,0 +1,84 @@
+<center>
+
+ <p>
+    <b>Compañia: </b><%= @company.name%>
+</p>
+
+ <p>
+    <b>Tarea Unitaria: </b><%= @unitary_task.description %>
+ </p>
+ </center>
+ </br></br> 
+
+<center>
+    <table border="1" class="table-condensed">
+        <tr>
+            <th rowspan="2">Peligro</th>
+            <th rowspan="2">Riesgo</th>
+            <th colspan="2">Causa Básica</th>
+            <th rowspan="2">Probabilidad</th>
+            <th rowspan="2">Consecuencia</th>   
+            <th rowspan="2">Magnitud</th>
+            <th rowspan="2">Calificación</th>
+        </tr>
+        <tr>
+            <th>Factor Personal</th>
+            <th>Factor Trabajo</th>  
+        </tr>
+        <% @risk_matrix.each do |rm|%>
+        <tr>
+            <% if rm.generate == false %>
+                <td><%= rm.risk.danger.description %></td>
+                <td><%= rm.risk.description%></td>
+                <td><%= rm.personal_cause %></td>
+                <td><%= rm.work_cause %></td>
+                <td align="center"><%= rm.probability %></td>
+            <% if rm.consequence == @consecuencia.last.value %>
+                <td align="center" bgcolor="#FF0000"><%= rm.consequence%></td> 
+             <%else%>      
+                <td align="center"><%= rm.consequence%></td> 
+             <%end%>
+            
+            <td align="center"><%= rm.magnitude%></td>
+            <% if @r.count == 3 %>
+                <% if rm.consequence == @consecuencia.last.value %>
+                   <td bgcolor="#FF0000" align="center">Intolerable</td>
+                <% else %>
+                    <% if rm.rating == "Intolerable"%>
+                        <td bgcolor="#FF0000" align="center">Intolerable</td>
+                    <% elsif rm.rating == "Tolerable"%>
+                         <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                    <% elsif rm.rating == "Moderado"%>
+                        <td bgcolor="#E8F809" align="center">Moderado</td>
+                    <% end%> 
+                <% end %>   
+            <% elsif @r.count == 5 %>
+                <% if rm.consequence == @consecuencia.last.value %>
+                    <td bgcolor="#FF0000" align="center">Intolerable</td>
+                <% else %>                           
+                    <% if rm.rating == "Intolerable"%>
+                        <td bgcolor="#FF0000" align="center">Intolerable</td>
+                    <% elsif rm.rating == "Tolerable"%>
+                         <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                    <% elsif rm.rating == "Moderado"%>
+                        <td bgcolor="#E8F809" align="center">Moderado</td>
+                    <% end%> 
+                <%end%>
+            <% elsif @r.count == 7 %>
+                <% if rm.rating == "Intolerable"%>
+                    <td bgcolor="#FF0000" align="center">Intolerable</td>
+                <% elsif rm.rating == "Tolerable"%>
+                     <td bgcolor="#37DA2B" align="center">Tolerable</td>
+                <% elsif rm.rating == "Moderado"%>
+                    <td bgcolor="#E8F809" align="center">Moderado</td>
+                <% end%> 
+            <%end%>
+            <%end%>
+        </tr>
+        <%end%>
+    </table>
+</center>
+</br>
+<center>
+    <%= link_to ' Finalizar' ,matrix_header_path(@header.id), :class => "active icon-ok btn btn-success"%>
+</center>
